@@ -3,7 +3,7 @@ import {motion} from 'framer-motion';
 export function MotionReturn({children}) {
 	return (
 		<motion.div
-			key={'form_data'}
+			key={'return_data'}
 			initial={{opacity: 0, x: '60px'}}
 			animate={{opacity: 1, x: '0px'}}
 			exit={{opacity: 0}}
@@ -33,6 +33,7 @@ export function MotionForm({children}) {
 export function MotionInterface({children}) {
 	return (
 		<motion.div
+			key={'motion-interface'}
 			initial={{opacity: 0, x: '-100px'}}
 			animate={{opacity: 1, x: '0px'}}
 			exit={{opacity: 0}}

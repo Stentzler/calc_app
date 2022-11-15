@@ -72,7 +72,10 @@ export default createGlobalStyle`
     letter-spacing: 1px;
   } 
 
-  //Check Boxex
+  p.error{
+    color: #fd3029;
+    font-size: 14px;
+  }
   
 @keyframes a {
  0% {

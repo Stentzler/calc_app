@@ -23,6 +23,7 @@ export const FormInput = styled.div`
 		gap: 16px;
 		align-items: center;
 		border-left: solid #000 1px;
+		text-align: center;
 	}
 
 	h4 {

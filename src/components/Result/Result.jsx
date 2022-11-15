@@ -7,19 +7,21 @@ function Result() {
 	const days = Object.keys(result);
 
 	if (days.length === 0) {
-		<MotionReturn>
-			<h4>Não foi possível realizar o cálculo, tente novamente.</h4>
-		</MotionReturn>;
+		return (
+			<MotionReturn>
+				<h4>Não foi possível realizar o cálculo, tente novamente.</h4>
+			</MotionReturn>
+		);
 	}
 
 	return (
 		<MotionReturn>
 			<h4>Você Receberá:</h4>
-			{days.map(day => {
+			{days.map((day, index) => {
 				return day === '1' ? (
-					<p>Amanhã: R$ {result['1'].toFixed(2)}</p>
+					<p key={index}>Amanhã: R$ {result['1'].toFixed(2)}</p>
 				) : (
-					<p>
+					<p key={index}>
 						Em {day} dias: R$ {result[`${day}`].toFixed(2)}
 					</p>
 				);

@@ -1,3 +1,4 @@
+import {ErrorResponse} from '@remix-run/router';
 import {createContext, useState} from 'react';
 import api from '../services';
 
@@ -7,9 +8,11 @@ export const APIProvider = ({children}) => {
 	const [loading, setLoading] = useState(false);
 	const [result, setResult] = useState({});
 	const [showResult, setShowResult] = useState(false);
+	const [timeout, setTimeout] = useState(false);
 
 	const requestPaymentInfo = async formData => {
 		try {
+			setTimeout(false);
 			setLoading(true);
 			setShowResult(false);
 
@@ -21,25 +24,32 @@ export const APIProvider = ({children}) => {
 				});
 				setResult(response.data);
 			} else {
+				const daysArr = formData.days
+					.split(',')
+					.map(element => Number(element))
+					.splice(0, 8);
+
 				const response = await api.post('', {
 					amount: formData.valor,
 					installments: formData.parcelas,
 					mdr: formData.mdr,
-					days: [formData.days],
+					days: daysArr,
 				});
 				setResult(response.data);
 			}
-
 			setLoading(false);
 			setShowResult(true);
 		} catch (error) {
-			console.log(error);
+			setLoading(false);
+			if (error.response.status === 408) {
+				setTimeout(true);
+			}
 		}
 	};
 
 	return (
 		<APIContext.Provider
-			value={{requestPaymentInfo, showResult, result, loading}}
+			value={{requestPaymentInfo, showResult, result, timeout, loading}}
 		>
 			{children}
 		</APIContext.Provider>
