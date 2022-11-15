@@ -1,11 +1,37 @@
 import {FormInput} from './styles';
 import {motion, AnimatePresence} from 'framer-motion';
+import {useState, useContext} from 'react';
+import APIContext from '../../context/APIContext';
+import Result from '../Result/Result';
+import Loading from '../Loading/Loading';
 
 function Form() {
+	const {requestPaymentInfo, loading, showResult} = useContext(APIContext);
+
+	const [valor, setValor] = useState('');
+	const [parcelas, setParcelas] = useState('');
+	const [mdr, setMdr] = useState('');
+
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		const submitedData = {
+			valor,
+			parcelas,
+			mdr,
+		};
+
+		setValor('');
+		setParcelas('');
+		setMdr('');
+		requestPaymentInfo(submitedData);
+	};
+
 	return (
 		<FormInput>
 			<AnimatePresence>
 				<motion.div
+					key={'form_data'}
 					initial={{opacity: 0}}
 					animate={{opacity: 1}}
 					exit={{opacity: 0}}
@@ -14,14 +40,16 @@ function Form() {
 				>
 					<h2>Simule Sua Antecipação</h2>
 
-					<form action='submit'>
+					<form onSubmit={handleSubmit}>
 						<div className='input-container'>
 							<label htmlFor='valor' className='label'>
 								Informe o valor da venda*
 							</label>
 							<input
 								id='valor'
-								type='text'
+								onChange={e => setValor(e.target.value)}
+								value={valor}
+								type='number'
 								className='input'
 								placeholder='R$'
 							/>
@@ -33,7 +61,9 @@ function Form() {
 							</label>
 							<input
 								id='parcelas'
-								type='text'
+								onChange={e => setParcelas(e.target.value)}
+								value={parcelas}
+								type='number'
 								className='input'
 								placeholder='Parcelas'
 							/>
@@ -45,7 +75,9 @@ function Form() {
 							</label>
 							<input
 								id='mdr'
-								type='text'
+								onChange={e => setMdr(e.target.value)}
+								value={mdr}
+								type='number'
 								className='input'
 								placeholder='MDR*'
 							/>
@@ -57,14 +89,17 @@ function Form() {
 					</form>
 				</motion.div>
 
-				<div className='result-div'>
-					{/*@todo dinamico conforme resposta da API */}
-					<h4>Você Receberá:</h4>
-					<p>Amanhã: R$ {(430).toFixed(2)}</p>
-					<p>Em 15 dias: R$ {(430).toFixed(2)}</p>
-					<p>Em 30 dias: R$ {(430).toFixed(2)}</p>
-					<p>Em 90 dias: R$ {(440.213123).toFixed(2)}</p>
-				</div>
+				{showResult ? (
+					<Result />
+				) : (
+					<div className='result-div'>
+						{loading ? (
+							<Loading height={28} width={28} />
+						) : (
+							<h4>Preencha o formulário.</h4>
+						)}
+					</div>
+				)}
 			</AnimatePresence>
 		</FormInput>
 	);
