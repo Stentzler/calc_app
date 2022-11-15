@@ -73,7 +73,7 @@ export const FormInput = styled.div`
 
 	@media (max-width: 840px) {
 		flex-direction: column;
-		padding: 15px;
+		padding: 8px 4px;
 		max-width: 100%;
 		font-size: 0.9rem;
 
@@ -81,15 +81,27 @@ export const FormInput = styled.div`
 			width: 100%;
 			border-left: 0;
 			border-top: 1.5px solid #000;
+			padding: 0;
+		}
+
+		h2 {
+			font-size: 26px;
+			padding-bottom: 18px;
 		}
 
 		.input-div {
 			width: 100%;
-			padding: 10px 0;
+			padding: 8px 0;
 		}
 
 		.input-container {
 			margin-bottom: 10px;
+			height: 50px;
+		}
+
+		form {
+			justify-content: space-between;
+			gap: 10px;
 		}
 	}
 `;

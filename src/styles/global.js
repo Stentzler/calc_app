@@ -5,7 +5,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    outline: none;
+    outline: none;  
   }
 
   body{
@@ -95,9 +95,16 @@ export default createGlobalStyle`
 }
 
   @media (max-width: 840px) {
-    body {overflow-x: hidden;
-      font-size: 0.9rem;}
-    
+    body {
+      overflow-x: hidden;
+      font-size: 0.9rem;
+    }
+
+    .app{
+      max-width: 93%;
+      display: flex;
+      align-items: center;
+    }
   }
 
   /* Removing arrows from input type number */

@@ -5,8 +5,8 @@ import GlobalStyle from './styles/global';
 function App() {
 	return (
 		<APIProvider>
+			<GlobalStyle />
 			<div className='app'>
-				<GlobalStyle />
 				<FormInterface />
 			</div>
 		</APIProvider>

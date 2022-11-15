@@ -10,13 +10,8 @@ export const FormContainer = styled.div`
 	display: flex;
 
 	@media (max-width: 840px) {
-		font-size: 0.9rem;
-		width: 400px;
-		max-width: 100%;
+		padding: 12px 14px;
+		max-width: 360px;
 		height: auto;
-
-		h1 {
-			font-size: 20px;
-		}
 	}
 `;
