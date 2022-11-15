@@ -1,6 +1,7 @@
 import {FormInput} from './styles';
 import {motion, AnimatePresence} from 'framer-motion';
 import {useState, useContext} from 'react';
+import {MotionForm} from '../Motion';
 import APIContext from '../../context/APIContext';
 import Result from '../Result/Result';
 import Loading from '../Loading/Loading';
@@ -11,6 +12,7 @@ function Form() {
 	const [valor, setValor] = useState('');
 	const [parcelas, setParcelas] = useState('');
 	const [mdr, setMdr] = useState('');
+	const [days, setDays] = useState('');
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -19,25 +21,22 @@ function Form() {
 			valor,
 			parcelas,
 			mdr,
+			days,
 		};
+		requestPaymentInfo(submitedData);
 
 		setValor('');
 		setParcelas('');
 		setMdr('');
-		requestPaymentInfo(submitedData);
+		setDays('');
 	};
+
+	//^[0-9,]*$
 
 	return (
 		<FormInput>
 			<AnimatePresence>
-				<motion.div
-					key={'form_data'}
-					initial={{opacity: 0}}
-					animate={{opacity: 1}}
-					exit={{opacity: 0}}
-					transition={{duration: 0.3}}
-					className='input-div'
-				>
+				<MotionForm>
 					<h2>Simule Sua Antecipação</h2>
 
 					<form onSubmit={handleSubmit}>
@@ -83,11 +82,25 @@ function Form() {
 							/>
 						</div>
 
+						<div className='input-container'>
+							<label htmlFor='mdr' className='label'>
+								Para quando? (Ex: 15,30,60)
+								<input
+									id='days'
+									onChange={e => setDays(e.target.value)}
+									value={days}
+									type='text'
+									className='input'
+									placeholder='Número de dias'
+								/>
+							</label>
+						</div>
+
 						<button type='submit'>
 							<span>Calcular</span>
 						</button>
 					</form>
-				</motion.div>
+				</MotionForm>
 
 				{showResult ? (
 					<Result />

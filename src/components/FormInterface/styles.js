@@ -4,7 +4,7 @@ export const FormContainer = styled.div`
 	background-color: #fff;
 	border-color: #000;
 	width: 780px;
-	height: 440px;
+	height: 480px;
 	padding: 18px 24px;
 
 	display: flex;
@@ -14,5 +14,9 @@ export const FormContainer = styled.div`
 		width: 400px;
 		max-width: 100%;
 		height: auto;
+
+		h1 {
+			font-size: 20px;
+		}
 	}
 `;

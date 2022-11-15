@@ -13,13 +13,23 @@ export const APIProvider = ({children}) => {
 			setLoading(true);
 			setShowResult(false);
 
-			const response = await api.post('', {
-				amount: formData.valor,
-				installments: formData.parcelas,
-				mdr: formData.mdr,
-			});
+			if (!formData.days) {
+				const response = await api.post('', {
+					amount: formData.valor,
+					installments: formData.parcelas,
+					mdr: formData.mdr,
+				});
+				setResult(response.data);
+			} else {
+				const response = await api.post('', {
+					amount: formData.valor,
+					installments: formData.parcelas,
+					mdr: formData.mdr,
+					days: [formData.days],
+				});
+				setResult(response.data);
+			}
 
-			setResult(response.data);
 			setLoading(false);
 			setShowResult(true);
 		} catch (error) {

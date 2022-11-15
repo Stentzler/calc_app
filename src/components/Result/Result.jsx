@@ -1,27 +1,30 @@
-import {motion} from 'framer-motion';
 import {useContext} from 'react';
 import APIContext from '../../context/APIContext';
+import {MotionReturn} from '../Motion';
 
 function Result() {
 	const {result} = useContext(APIContext);
+	const days = Object.keys(result);
+
+	if (days.length === 0) {
+		<MotionReturn>
+			<h4>Não foi possível realizar o cálculo, tente novamente.</h4>
+		</MotionReturn>;
+	}
 
 	return (
-		<>
-			<motion.div
-				key={'form_data'}
-				initial={{opacity: 0, x: '60px'}}
-				animate={{opacity: 1, x: '0px'}}
-				exit={{opacity: 0}}
-				transition={{duration: 0.3}}
-				className='result-div'
-			>
-				<h4>Você Receberá:</h4>
-				<p>Amanhã: R$ {result['1'].toFixed(2)}</p>
-				<p>Em 15 dias: R$ {result['15'].toFixed(2)}</p>
-				<p>Em 30 dias: R$ {result['30'].toFixed(2)}</p>
-				<p>Em 90 dias: R$ {result['90'].toFixed(2)}</p>
-			</motion.div>
-		</>
+		<MotionReturn>
+			<h4>Você Receberá:</h4>
+			{days.map(day => {
+				return day === '1' ? (
+					<p>Amanhã: R$ {result['1'].toFixed(2)}</p>
+				) : (
+					<p>
+						Em {day} dias: R$ {result[`${day}`].toFixed(2)}
+					</p>
+				);
+			})}
+		</MotionReturn>
 	);
 }
 

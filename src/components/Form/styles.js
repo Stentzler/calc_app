@@ -30,10 +30,10 @@ export const FormInput = styled.div`
 		border-bottom: 1px solid #000;
 		color: #3d405b;
 	}
+
 	h2 {
 		color: #3d405b;
-		padding: 5px;
-		margin: 20px 0;
+		padding: 8px 0;
 		text-align: center;
 	}
 
@@ -57,6 +57,17 @@ export const FormInput = styled.div`
 	label {
 		display: block;
 		color: #3d405b;
+	}
+
+	.checkboxes {
+		width: 100%;
+		display: flex;
+		gap: 10px;
+		justify-content: space-between;
+	}
+
+	.checkbox {
+		display: flex;
 	}
 
 	@media (max-width: 840px) {
