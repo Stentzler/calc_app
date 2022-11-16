@@ -4,9 +4,9 @@ import {MotionReturn} from '../Motion';
 
 function Result() {
 	const {result} = useContext(APIContext);
-	const days = Object.keys(result);
+	const resultByDays = Object.keys(result);
 
-	if (days.length === 0) {
+	if (resultByDays.length === 0) {
 		return (
 			<MotionReturn>
 				<h4>Não foi possível realizar o cálculo, tente novamente.</h4>
@@ -17,7 +17,7 @@ function Result() {
 	return (
 		<MotionReturn>
 			<h4>Você Receberá:</h4>
-			{days.map((day, index) => {
+			{resultByDays.map((day, index) => {
 				return day === '1' ? (
 					<p key={index}>Amanhã: R$ {result['1'].toFixed(2)}</p>
 				) : (

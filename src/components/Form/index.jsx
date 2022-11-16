@@ -10,8 +10,9 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {schema} from './yupSchema';
 
 function Form() {
-	const {requestPaymentInfo, loading, showResult, timeout} =
+	const {requestPaymentInfo, loading, showResult, timeout, disableButton} =
 		useContext(APIContext);
+
 	const {
 		register,
 		handleSubmit,
@@ -97,21 +98,21 @@ function Form() {
 									id='days'
 									type='text'
 									className='input'
-									placeholder='15,30,90'
+									placeholder='15,30,90 (dias)'
 									{...register('days')}
 								/>
 							</label>
 							{errors?.days && <p className='error'>{errors.days?.message}</p>}
 						</div>
 
-						<button type='submit'>
+						<button type='submit' disabled={disableButton}>
 							<span>Calcular</span>
 						</button>
 					</form>
 				</MotionForm>
 
 				{showResult ? (
-					<Result key={'result'} />
+					<Result />
 				) : (
 					<div className='result-div'>
 						{loading ? (

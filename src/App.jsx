@@ -1,4 +1,4 @@
-import FormInterface from './components/FormInterface';
+import Display from './components/Display';
 import {APIProvider} from './context/APIContext';
 import GlobalStyle from './styles/global';
 
@@ -7,7 +7,7 @@ function App() {
 		<APIProvider>
 			<GlobalStyle />
 			<div className='app'>
-				<FormInterface />
+				<Display />
 			</div>
 		</APIProvider>
 	);

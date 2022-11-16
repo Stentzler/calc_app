@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FormInput = styled.div`
 	display: flex;
 	width: 100%;
-	border: 1.5px solid #000;
+	border: 2px solid var(--primary);
 
 	.input-div {
 		width: 65%;
@@ -22,18 +22,18 @@ export const FormInput = styled.div`
 		justify-content: center;
 		gap: 16px;
 		align-items: center;
-		border-left: solid #000 1px;
+		border-left: solid var(--primary) 1px;
 		text-align: center;
 	}
 
 	h4 {
 		padding: 6px 0;
-		border-bottom: 1px solid #000;
-		color: #3d405b;
+		border-bottom: 1px solid var(--primary);
+		color: #222;
 	}
 
 	h2 {
-		color: #3d405b;
+		color: #222;
 		padding: 8px 0;
 		text-align: center;
 	}
@@ -57,18 +57,13 @@ export const FormInput = styled.div`
 	input,
 	label {
 		display: block;
-		color: #3d405b;
+		color: #222;
+		font-weight: 500;
 	}
 
-	.checkboxes {
-		width: 100%;
-		display: flex;
-		gap: 10px;
-		justify-content: space-between;
-	}
-
-	.checkbox {
-		display: flex;
+	input::placeholder {
+		color: var(--secondary);
+		opacity: 0.5;
 	}
 
 	@media (max-width: 840px) {
@@ -80,7 +75,7 @@ export const FormInput = styled.div`
 		.result-div {
 			width: 100%;
 			border-left: 0;
-			border-top: 1.5px solid #000;
+			border-top: 1.5px solid var(--primary);
 			padding: 0;
 		}
 
