@@ -20,6 +20,8 @@ function Result() {
 			{resultByDays.map((day, index) => {
 				return day === '1' ? (
 					<p key={index}>Amanhã: R$ {result['1'].toFixed(2)}</p>
+				) : day === '0' ? (
+					<p key={index}>Hoje: R$ {result[`${day}`].toFixed(2)}</p>
 				) : (
 					<p key={index}>
 						Em {day} dias: R$ {result[`${day}`].toFixed(2)}

@@ -8,6 +8,10 @@ export default createGlobalStyle`
     outline: none;  
   }
 
+  h1{
+    color: #333;
+  }
+
   :root {
     --secondary: #171617ca;
     --primary: #1B001B;
