@@ -12,7 +12,7 @@ function Display() {
 		<AnimatePresence>
 			<MotionInterface>
 				<FormContainer>
-					{land ? <LandingPage setLand={setLand} /> : <Form />}{' '}
+					{land ? <LandingPage setLand={setLand} /> : <Form />}
 				</FormContainer>
 			</MotionInterface>
 		</AnimatePresence>

@@ -4,13 +4,13 @@ import {useContext} from 'react';
 import {MotionForm} from '../Motion';
 import APIContext from '../../context/APIContext';
 import Result from '../Result/Result';
-import Loading from '../Loading/Loading';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {schema} from './yupSchema';
+import ErrorFeedback from '../ErrorFeedback';
 
 function Form() {
-	const {requestPaymentInfo, loading, showResult, timeout, disableButton} =
+	const {requestPaymentInfo, showResult, disableButton} =
 		useContext(APIContext);
 
 	const {
@@ -111,19 +111,7 @@ function Form() {
 					</form>
 				</MotionForm>
 
-				{showResult ? (
-					<Result />
-				) : (
-					<div className='result-div'>
-						{loading ? (
-							<Loading height={28} width={28} />
-						) : timeout ? (
-							<h4>Tempo limite atingido, tente novamente.</h4>
-						) : (
-							<h4>Preencha o formulário.</h4>
-						)}
-					</div>
-				)}
+				{showResult ? <Result /> : <ErrorFeedback />}
 			</AnimatePresence>
 		</FormInput>
 	);

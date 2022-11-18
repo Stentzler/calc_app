@@ -66,6 +66,11 @@ export const FormInput = styled.div`
 		opacity: 0.5;
 	}
 
+	.timeout,
+	.error {
+		border-bottom: none;
+	}
+
 	@media (max-width: 840px) {
 		flex-direction: column;
 		padding: 8px 4px;

@@ -6,14 +6,17 @@ const APIContext = createContext();
 export const APIProvider = ({children}) => {
 	const [loading, setLoading] = useState(false);
 	const [timeout, setTimeout] = useState(false);
+	const [internalError, setInternalError] = useState(false);
 	const [disableButton, setDisableButton] = useState(false);
 	const [result, setResult] = useState({});
 	const [showResult, setShowResult] = useState(false);
 
 	const requestPaymentInfo = async formData => {
 		try {
+			//Reseting old error/result messages and displaying Loading for the user
 			setTimeout(false);
 			setShowResult(false);
+			setInternalError(false);
 			setLoading(true);
 			setDisableButton(true);
 
@@ -38,16 +41,19 @@ export const APIProvider = ({children}) => {
 				});
 				setResult(response.data);
 			}
+			// Setting loading to false, showing the results.
 			setLoading(false);
 			setShowResult(true);
 			setDisableButton(false);
-			//
 		} catch (error) {
-			//
+			// Displaying error message, setting loading to false
 			setLoading(false);
 			setDisableButton(false);
+
 			if (error.response.status === 408) {
 				setTimeout(true);
+			} else {
+				setInternalError(true);
 			}
 		}
 	};
@@ -61,6 +67,7 @@ export const APIProvider = ({children}) => {
 				result,
 				timeout,
 				loading,
+				internalError,
 			}}
 		>
 			{children}
